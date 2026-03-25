@@ -1,4 +1,4 @@
-const Transfer = require("../models/Transfer");
+const Transfer = require("../models/transfer.model");
 
 async function getAllTransfers() {
   return await Transfer.find().sort({ blockNumber: -1 });
