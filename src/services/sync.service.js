@@ -7,9 +7,14 @@ async function syncTransfers(address) {
 
     await saveTransfers(transfers);
 
+    const total =
+      transfers.outgoing.length + transfers.incoming.length;
+
     return {
-      message: "Transfers synced successfully",
-      count: transfers.length,
+      message: "Sync successful",
+      totalFetched: total,
+      outgoing: transfers.outgoing.length,
+      incoming: transfers.incoming.length,
     };
   } catch (err) {
     console.error("Sync Error:", err.message);

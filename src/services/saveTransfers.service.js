@@ -1,10 +1,12 @@
 const Transfer = require("../models/transfer.model");
 
-async function saveTransfers(transfers) {
+async function saveTransfers({ outgoing, incoming }) {
   try {
-    for (let tx of transfers) {
+    const allTransfers = [...outgoing, ...incoming];
+
+    for (let tx of allTransfers) {
       await Transfer.updateOne(
-        { txHash: tx.hash }, 
+        { txHash: tx.hash },
         {
           from: tx.from,
           to: tx.to,
