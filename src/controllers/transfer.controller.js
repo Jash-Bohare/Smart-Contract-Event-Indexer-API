@@ -43,7 +43,7 @@ async function getOutgoing(req, res) {
   try {
     const { address } = req.params;
 
-    const data = await getOutgoingTransfers(address);
+    const data = await getOutgoingTransfers(address, req.query);
 
     res.status(200).json({
       success: true,
@@ -61,7 +61,7 @@ async function getIncoming(req, res) {
   try {
     const { address } = req.params;
 
-    const data = await getIncomingTransfers(address);
+    const data = await getIncomingTransfers(address, req.query);
 
     res.status(200).json({
       success: true,
@@ -69,6 +69,7 @@ async function getIncoming(req, res) {
       data,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json({
       success: false,
     });
